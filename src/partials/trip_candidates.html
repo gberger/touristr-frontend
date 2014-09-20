@@ -1,0 +1,27 @@
+<div class="panel panel-default">
+	<div class="panel-body">
+		<p>
+			<strong>{{candidates[0].user.name}}</strong> is also going 
+			to {{trip.city}} 
+			from {{candidates[0].start_date | date:'mediumDate'}} 
+			to {{candidates[0].end_date | date:'mediumDate'}}.
+		</p>
+		<p>
+			Maybe you two should go sight-seeing together!
+		</p>
+	</div>
+	<div class="panel-footer" ng-if="candidates[0].purpose || candidates[0].user.bio">
+		<blockquote>{{candidates[0].purpose}}</blockquote>
+		<blockquote>{{candidates[0].user.bio}}</blockquote>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-6">
+		<a class="btn btn-block btn-danger" ng-click="rejectCandidate()">I don't want to meet him/her.</a>	
+	</div>
+	<div class="col-xs-6">
+		<a class="btn btn-block btn-success" ng-click="acceptCandidate()">I want to go sight-seeing with him/her!</a>
+	</div>
+</div>
+

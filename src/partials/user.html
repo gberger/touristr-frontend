@@ -1,0 +1,13 @@
+<nav class="user-menu" ng-controller="UserCtrl">
+    Welcome back,
+    <li class="dropdown">
+        <a class="dropdown-toggle">
+            {{ user.email }}
+        </a>
+        <ul class="dropdown-menu">
+            <li><a ng-click="openApiKeyModal()"><i class="glyphicon glyphicon-cloud"></i> API key</a></li>
+            <li><a ng-click="openChangePasswordModal()"><i class="glyphicon glyphicon-lock"></i> Change password</a></li>
+            <li><a ng-click="logout()"><i class="glyphicon glyphicon-remove"></i> Logout</a></li>
+        </ul>
+    </li>
+</nav>

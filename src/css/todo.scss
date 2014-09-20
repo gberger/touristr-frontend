@@ -1,0 +1,35 @@
+.todo-user-menu {
+  float: right;
+  padding-bottom: 20px;
+}
+
+.todo-new, .todo-sort {
+  margin-bottom: 20px;
+}
+
+.todo-heading {
+  position: relative;
+}
+
+.todo-completed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 0;
+  height: 100%;
+  width: 40px;
+}
+
+.todo-text {
+  margin-left: 45px;
+
+  .editable-wrap {
+    margin-bottom: -7px;
+    margin-top: -7px;
+    display: block;
+  }
+
+  .completed {
+    color: #999;
+  }
+}
