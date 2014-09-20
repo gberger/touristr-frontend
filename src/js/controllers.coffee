@@ -79,8 +79,10 @@ angular.module("touristrApp")
 		$scope.candidates = $scope.candidates.slice(1)
 		$http(method: 'POST', url: "#{API_ENDPOINT}/trips/#{$scope.trip.id}/candidates/#{candidate.id}/rejection")
 
-.controller "TripMatchesCtrl", ($scope, $routeParams, Trip) ->
+.controller "TripMatchesCtrl", ($scope, $routeParams, Trip, TripMatches) ->
 	$scope.trip = Trip.get(id: $routeParams.id)
+	TripMatches($routeParams.id).success (matches) ->
+		$scope.matches = matches
 
 .controller "TripMatchMessagesCtrl", ($scope, $routeParams, Trip) ->
 	$scope.trip = Trip.get(id: $routeParams.id)

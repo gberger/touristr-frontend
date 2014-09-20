@@ -1,1 +1,27 @@
-Matches for trip to {{trip.city}}
+<h2>Trip matches</h2>
+
+<h3>{{trip.city}} - from {{trip.start_date | date:'mediumDate'}} 
+				to {{trip.end_date | date:'mediumDate'}}</h3>
+
+<p ng-if="matches.length === 0">
+	None to show, sorry! Check back later.
+</p>
+
+<div ng-if="matches.length > 0" >
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4>{{matches[0].user.name}}</h4>
+		</div>
+		<div class="panel-body">
+			<p>
+				<strong>{{matches[0].user.name}}</strong> is also going 
+				to {{trip.city}} 
+				from {{matches[0].start_date | date:'mediumDate'}} 
+				to {{matches[0].end_date | date:'mediumDate'}}.
+			</p>
+		</div>
+		<div class="panel-footer" ng-if="matches[0].purpose">
+			<blockquote>{{matches[0].purpose}}</blockquote>
+		</div>
+	</div>
+</div>

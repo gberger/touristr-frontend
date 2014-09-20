@@ -1,5 +1,8 @@
 <h2>Trip candidates</h2>
 
+<h3>{{trip.city}} - from {{trip.start_date | date:'mediumDate'}} 
+				to {{trip.end_date | date:'mediumDate'}}</h3>
+
 <p ng-if="candidates.length === 0">
 	None to show, sorry! Check back later.
 </p>

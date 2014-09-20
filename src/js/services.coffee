@@ -11,6 +11,12 @@ angular.module("touristrApp")
 			method: 'GET'
 			url: "#{API_ENDPOINT}/trips/#{tripId}/candidates"
 
+.factory "TripMatches", (API_ENDPOINT, $http) ->
+	(tripId) ->
+		$http
+			method: 'GET'
+			url: "#{API_ENDPOINT}/trips/#{tripId}/matches"
+
 .factory "User", (API_ENDPOINT, $http, $location, $cookieStore, Facebook) ->
 	User =
 		isLoggedIn: false
