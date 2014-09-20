@@ -1,7 +1,23 @@
-<a ng-click="newTrip()">New trip</a>
+<h2>Your Trips</h2>
 
-<ul>
-	<li ng-repeat="trip in trips">
-		{{trip.city}}
-	</li>
-</ul>
+<p>
+	
+<a ng-click="newTrip()" class="btn btn-success btn-block">New trip</a>
+
+</p>
+<div class="panel panel-info" ng-repeat="trip in trips">
+	<div class="panel-heading">
+		<h4>{{trip.city}}</h4>
+	</div>
+	<div class="panel-body">
+		From {{trip.start_date | date:'mediumDate'}} 
+		to {{trip.end_date | date:'mediumDate'}}.
+	</div>
+	<div class="panel-footer">
+		<div class="row">
+			<div class="col-xs-4"><a ng-click="viewMatches(trip)" class="btn btn-default btn-block">View matches</a></div>
+			<div class="col-xs-4"><a ng-click="viewCandidates(trip)" class="btn btn-default btn-block">View candidates</a></div>
+			<div class="col-xs-4"><a ng-click="editTrip(trip)" class="btn btn-default btn-block">Edit</a></div>
+		</div>
+	</div>
+</div>

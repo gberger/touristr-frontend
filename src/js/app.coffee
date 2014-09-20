@@ -20,6 +20,10 @@ angular.module("touristrApp", ["facebook", "ngRoute", "ngResource", "ngAnimate",
 		templateUrl: "partials/new_trip.html"
 		controller: "NewTripCtrl"
 
+	$routeProvider.when "/trips/:id",
+		templateUrl: "partials/edit_trip.html"
+		controller: "EditTripCtrl"
+
 	$routeProvider.when "/trips/:id/candidates",
 		templateUrl: "partials/trip_candidates.html"
 		controller: "TripCandidatesCtrl"

@@ -34,6 +34,12 @@ angular.module("touristrApp")
 	$scope.editTrip = (trip) ->
 		$location.path "/trips/#{trip.id}"
 
+	$scope.viewMatches = (trip) ->
+		$location.path "/trips/#{trip.id}/matches"
+
+	$scope.viewCandidates = (trip) ->
+		$location.path "/trips/#{trip.id}/candidates"
+
 	lpad = (value, length) ->
 		if (value.toString().length < length) then lpad('0' + value, length) else value
 
@@ -48,7 +54,14 @@ angular.module("touristrApp")
 		trip.city = $scope.newTrip.city
 		trip.start_date = $scope.newTrip.startDate
 		trip.end_date = $scope.newTrip.endDate
+		trip.purpose = $scope.newTrip.purpose
 		trip.$save ->
+			$location.path '/trips'
+
+.controller "EditTripCtrl", ($scope, $location, Trip, $routeParams) ->
+	$scope.trip = Trip.get(id: $routeParams.id)
+	$scope.saveTrip = ->
+		$scope.trip.$save ->
 			$location.path '/trips'
 
 .controller "TripCandidatesCtrl", ($scope, $routeParams, Trip, TripCandidates, $http, API_ENDPOINT) ->

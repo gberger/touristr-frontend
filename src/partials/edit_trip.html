@@ -1,28 +1,28 @@
 <h2>Submit a new trip</h2>
 
-<form class="form-horizontal" role="form" ng-submit="submitNewTrip()">
+<form class="form-horizontal" role="form" ng-submit="saveTrip()">
   <div class="form-group">
     <label for="input-city" class="col-xs-2 control-label">City</label>
     <div class="col-xs-10">
-      <input type="text" class="form-control" id="input-city" ng-model="newTrip.city">
+      <input type="text" class="form-control" id="input-city" ng-model="trip.city">
     </div>
   </div>
   <div class="form-group">
     <label for="input-start-date" class="col-xs-2 control-label">Start Date</label>
     <div class="col-xs-10">
-      <input type="date" class="form-control" id="input-start-date" ng-model="newTrip.startDate">
+      <input type="date" class="form-control" id="input-start-date" ng-model="trip.start_date">
     </div>
   </div>
   <div class="form-group">
     <label for="input-end-date" class="col-xs-2 control-label">End Date</label>
     <div class="col-xs-10">
-      <input type="date" class="form-control" id="input-end-date" ng-model="newTrip.endDate">
+      <input type="date" class="form-control" id="input-end-date" ng-model="trip.end_date">
     </div>
   </div>
   <div class="form-group">
     <label for="input-end-date" class="col-xs-2 control-label">Purpose</label>
     <div class="col-xs-10">
-      <textarea class="form-control" id="input-end-date" ng-model="newTrip.purpose"
+      <textarea class="form-control" id="input-end-date" ng-model="trip.purpose"
         placeholder="Tell your potential matchups why you are in town, what you plan to do, what are your hobbies, etc." rows="4"></textarea>
     </div>
   </div>
