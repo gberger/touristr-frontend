@@ -12,7 +12,7 @@ angular.module("touristrApp")
 			User.login(response).success ->
 				$location.path '/home'
 
-.controller "TripsCtrl", ($scope, $location, Trip) ->
+.controller "TripsCtrl", ($scope, $location, Trip, User) ->
 	$scope.fetchTrips = ->
 		trips = Trip.query ->
 			$scope.trips = trips
@@ -40,6 +40,9 @@ angular.module("touristrApp")
 	$scope.viewCandidates = (trip) ->
 		$location.path "/trips/#{trip.id}/candidates"
 
+	$scope.logout = ->
+		User.logout()
+
 	lpad = (value, length) ->
 		if (value.toString().length < length) then lpad('0' + value, length) else value
 
@@ -49,6 +52,7 @@ angular.module("touristrApp")
 
 
 .controller "NewTripCtrl", ($scope, $location, Trip) ->
+	$scope.prev = -> $location.path("/trips/")
 	$scope.submitNewTrip = ->
 		trip = new Trip()
 		trip.city = $scope.newTrip.city
@@ -59,12 +63,14 @@ angular.module("touristrApp")
 			$location.path '/trips'
 
 .controller "EditTripCtrl", ($scope, $location, Trip, $routeParams) ->
+	$scope.prev = -> $location.path("/trips/")
 	$scope.trip = Trip.get(id: $routeParams.id)
 	$scope.saveTrip = ->
 		$scope.trip.$save ->
 			$location.path '/trips'
 
 .controller "TripCandidatesCtrl", ($scope, $routeParams, Trip, TripCandidates, $http, API_ENDPOINT) ->
+	$scope.prev = -> $location.path("/trips/")
 	$scope.trip = Trip.get(id: $routeParams.id)
 	TripCandidates($routeParams.id).success (candidates) ->
 		$scope.candidates = candidates
@@ -79,10 +85,30 @@ angular.module("touristrApp")
 		$scope.candidates = $scope.candidates.slice(1)
 		$http(method: 'POST', url: "#{API_ENDPOINT}/trips/#{$scope.trip.id}/candidates/#{candidate.id}/rejection")
 
-.controller "TripMatchesCtrl", ($scope, $routeParams, Trip, TripMatches) ->
+.controller "TripMatchesCtrl", ($scope, $routeParams, $location, Trip, TripMatches) ->
+	$scope.prev = -> $location.path("/trips/")
+
 	$scope.trip = Trip.get(id: $routeParams.id)
 	TripMatches($routeParams.id).success (matches) ->
 		$scope.matches = matches
 
-.controller "TripMatchMessagesCtrl", ($scope, $routeParams, Trip) ->
+	$scope.showMessages = (match) ->
+		$location.path("/trips/3/matches/#{match.id}/messages")
+
+.controller "TripMatchMessagesCtrl", ($scope, $routeParams, $location, Trip, TripMatchMessages) ->
+	$scope.prev = -> $location.path("/trips/#{$routeParams.id}/matches")
+
 	$scope.trip = Trip.get(id: $routeParams.id)
+	$scope.other = Trip.get(id: $routeParams.other_id)
+
+	refresh = ->
+		TripMatchMessages.get($routeParams.id, $routeParams.other_id).success (messages) ->
+			$scope.messages = messages
+	refresh()
+
+	$scope.newMessage = ""
+	$scope.sendMessage = ->
+		TripMatchMessages.send($routeParams.id, $routeParams.other_id, $scope.newMessage).success ->
+			refresh()
+		$scope.messages.push({trip_a_id: $routeParams.id, trip_b_id: $routeParams.other_id, msg: $scope.newMessage})
+		$scope.newMessage = ""

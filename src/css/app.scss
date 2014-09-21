@@ -1,12 +1,13 @@
-@import "login.scss";
-@import "todo.scss";
-@import "user.scss";
 
 body {
   background-color: #eee;
 }
 
-.growl {
-  // Above modal overlay.
-  z-index: 1100;
+.mine {
+	text-align: right;
+	background-color: #e8e8e8;
+}
+
+.pointy {
+	cursor: pointer;
 }

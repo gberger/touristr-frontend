@@ -1,1 +1,21 @@
-Messages for trip to {{trip.city}}
+<h2><i class="fa fa-chevron-left pointy" ng-click="prev()"></i> Messaging {{other.user.name}}</h2>
+
+<h3>Regarding a trip to {{trip.city}}</h3>
+
+<div class="panel panel-default">
+	<ul class="list-group">
+    	<li ng-repeat="message in messages" ng-class="{mine: message.trip_a_id == trip.id}" class="list-group-item">
+    		{{message.msg}}
+    	</li>
+	</ul>
+	<div class="panel-footer">
+	<form class="chat-form" ng-submit="sendMessage(newMessage)">
+		<div class="input-group">
+			<input type="text" class="form-control chat-msg-input" maxlength="512" ng-model="newMessage">
+			<span class="input-group-btn">
+				<input type="submit" ng-disabled="newMessage.length === 0" class="btn btn-success chat-send" value="»"/>
+			</span>
+		</div>
+	</form>
+  </div>
+</div>
