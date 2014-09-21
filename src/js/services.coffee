@@ -68,6 +68,7 @@ angular.module("touristrApp")
 
 	User.logout = ->
 		@clear()
+		FB.logout()
 		$cookieStore.remove('user')
 		$location.path('/login')
 

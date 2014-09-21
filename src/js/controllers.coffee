@@ -74,8 +74,12 @@ angular.module("touristrApp")
 	$scope.saveTrip = ->
 		$scope.trip.$update ->
 			$location.path '/trips'
+	$scope.deleteTrip = ->
+		if confirm "Do you really want to delete this trip to #{$scope.trip.city}?"
+			$scope.trip.$delete ->
+				$location.path '/trips'
 
-.controller "TripCandidatesCtrl", ($scope, $routeParams, Trip, TripCandidates, $http, API_ENDPOINT) ->
+.controller "TripCandidatesCtrl", ($scope, $routeParams, $location, Trip, TripCandidates, $http, API_ENDPOINT) ->
 	$scope.prev = -> $location.path("/trips/")
 	$scope.trip = Trip.get(id: $routeParams.id)
 	TripCandidates($routeParams.id).success (candidates) ->
@@ -111,6 +115,8 @@ angular.module("touristrApp")
 		TripMatchMessages.get($routeParams.id, $routeParams.other_id).success (messages) ->
 			$scope.messages = messages
 	refresh()
+
+	setInterval(refresh, 1000)
 
 	$scope.newMessage = ""
 	$scope.sendMessage = ->
