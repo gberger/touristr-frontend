@@ -53,6 +53,9 @@ angular.module("touristrApp")
 
 .controller "NewTripCtrl", ($scope, $location, Trip) ->
 	$scope.prev = -> $location.path("/trips/")
+	$scope.result = ''
+	$scope.options = types: '(cities)'
+	$scope.details = ''
 	$scope.submitNewTrip = ->
 		trip = new Trip()
 		trip.city = $scope.newTrip.city
@@ -64,9 +67,12 @@ angular.module("touristrApp")
 
 .controller "EditTripCtrl", ($scope, $location, Trip, $routeParams) ->
 	$scope.prev = -> $location.path("/trips/")
+	$scope.result = ''
+	$scope.options = types: '(cities)'
+	$scope.details = ''
 	$scope.trip = Trip.get(id: $routeParams.id)
 	$scope.saveTrip = ->
-		$scope.trip.$save ->
+		$scope.trip.$update ->
 			$location.path '/trips'
 
 .controller "TripCandidatesCtrl", ($scope, $routeParams, Trip, TripCandidates, $http, API_ENDPOINT) ->

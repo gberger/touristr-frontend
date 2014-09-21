@@ -1,5 +1,7 @@
 angular.module("touristrApp")
 
+.value("GOOGLE_API_KEY", "AIzaSyAUm_9GDa00zNmVnNLnsbFCRS_pdsQTLVM")
+
 .value('API_ENDPOINT', '//localhost:3000')
 
 .factory "Trip", (API_ENDPOINT, $resource) ->

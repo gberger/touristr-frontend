@@ -1,4 +1,4 @@
-angular.module("touristrApp", ["facebook", "ngRoute", "ngResource", "ngAnimate", "ngCookies", "ui.bootstrap", "xeditable"])
+angular.module("touristrApp", ["facebook", "ngRoute", "ngResource", "ngCookies", "ngAutocomplete"])
 
 .config ($routeProvider, $httpProvider, FacebookProvider) ->
 	FacebookProvider.setAppId('277783592414721');
@@ -54,8 +54,5 @@ angular.module("touristrApp", ["facebook", "ngRoute", "ngResource", "ngAnimate",
 
 		$q.reject rejection
 
-.run (editableThemes, editableOptions, User) ->
-	editableOptions.theme = 'bs3'
-	editableThemes.bs3.inputClass = 'input-block'
-	editableThemes.bs3.formTpl = '<form class="editable-wrap" role="form"></form>'
+.run (User) ->
 	User.fromStorage()
